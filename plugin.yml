@@ -43,37 +43,13 @@ permissions:
   kygekeasygmd.gmdc:
     description: Permission to use /gmdc for self and other
     default: op
-  kygekeasygmd.gmdc.self:
-    description: Permission to use /gmdc for self
-    default: op
-  kygekeasygmd.gmdc.other:
-    description: Permission to use /gmdc for other
-    default: op
   kygekeasygmd.gmds:
     description: Permission to use /gmds for self and other
-    default: op
-  kygekeasygmd.gmds.self:
-    description: Permission to use /gmds for self
-    default: op
-  kygekeasygmd.gmds.other:
-    description: Permission to use /gmds for other
     default: op
   kygekeasygmd.gmda:
     description: Permission to use /gmda for self and other
     default: op
-  kygekeasygmd.gmda.self:
-    description: Permission to use /gmda for self
-    default: op
-  kygekeasygmd.gmda.other:
-    description: Permission to use /gmda for other
-    default: op
   kygekeasygmd.gmdsp:
     description: Permission to use /gmdsp for self and other
-    default: op
-  kygekeasygmd.gmdsp.self:
-    description: Permission to use /gmdsp for self
-    default: op
-  kygekeasygmd.gmdsp.other:
-    description: Permission to use /gmdsp for other
     default: op
 ...
