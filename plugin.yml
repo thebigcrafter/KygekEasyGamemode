@@ -30,6 +30,10 @@ commands:
     description: Change gamemode to Survival
     permission: kygekeasygmd.gmds
     usage: "/gmds [player]"
+  gmda:
+    description: Change gamemode to Adventure
+    permission: kygekeasygmd.gmda
+    usage: "/gmda [player]"
   gmdsp:
     description: Change gamemode to Spectator
     permission: kygekeasygmd.gmdsp
@@ -55,6 +59,16 @@ permissions:
         default: op
       kygekeasygmd.gmds.other:
         description: Permission to use /gmds for other
+        default: op
+  kygekeasygmd.gmda:
+    description: Permission to use /gmda for self and other
+    default: op
+    children:
+      kygekeasygmd.gmda.self:
+        description: Permission to use /gmda for self
+        default: op
+      kygekeasygmd.gmda.other:
+        description: Permission to use /gmda for other
         default: op
   kygekeasygmd.gmdsp:
     description: Permission to use /gmdsp for self and other
