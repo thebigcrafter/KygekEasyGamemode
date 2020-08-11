@@ -33,237 +33,145 @@ use pocketmine\command\ConsoleCommandSender;
 class Main extends PluginBase {
 
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
-    $self = $this->getServer()->getPlayer($sender->getName());
-    $other = $this->getServer()->getPlayer($args[0]);
-    $server = $this->getServer();
-    $nopermall = TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::RED . "You do not have permission to use this command";
-    $nopermself = TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::RED . "You do not have permission to change your gamemode";
-    $nopermother = TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::RED . "You do not have permission to change others' gamemode";
-    $notfound = TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::RED . "Player " . $other->getName() . "was not found";
+    if (isset($args[0])) {
+      $other = $this->getServer()->getPlayerExact($args[0]);
+      $server = $this->getServer();
+      $nopermission = TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::RED . "You do not have permission to use this command";
+      $notfound = TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::RED . "Player was not found";
+    }
+    // $self = $this->getServer()->getPlayer($sender->getName());
     switch ($cmd->getName()) {
 
       case "gmdc":
-        if (!$sender instanceof Player) {
+      if (!$sender instanceof Player) {
+        if (count($args) < 1) {
+          $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmdc <player>");
+        } elseif (isset($args[0])) {
+          if (is_null($other)) {
+            $sender->sendMessage($notfound);
+          } else {
+            $other->setGamemode(1);
+            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Creative");
+            $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Creative by CONSOLE");
+          }
+        }
+      } else {
+        if ($sender->hasPermission("kygekeasygmd.gmdc")) {
           if (count($args) < 1) {
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmdc <player>");
+            $sender->setGamemode(1);
+            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Creative");
           } elseif (isset($args[0])) {
-            if (!$other) {
+            if (is_null($other)) {
               $sender->sendMessage($notfound);
             } else {
               $other->setGamemode(1);
               $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Creative");
-              $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Creative by CONSOLE");
+              $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Creative by " . $sender->getName());
             }
           }
         } else {
-          if (!$sender->hasPermission("kygekeasygmd.gmdc")) {
-            if (count($args) < 1) {
-              if (!$sender->hasPermission("kygekeasygmd.gmdc.self") and $sender->hasPermission("kygekeasygmd.gmdc.other")) {
-                $sender->sendMessage($nopermall);
-              } elseif (!$sender->hasPermission("kygekeasygmd.gmdc.self")) {
-                $sender->sendMessage($nopermself);
-              } elseif ($sender->hasPermission("kygekeasygmd.gmdc.self")) {
-                $self->setGamemode(1);
-                $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Creative");
-              }
-            } elseif (isset($args[0])) {
-              if (!$sender->hasPermission("kygekeasygmd.gmdc.self") and $sender->hasPermission("kygekeasygmd.gmdc.other")) {
-                $sender->sendMessage($nopermall);
-              } elseif (!$sender->hasPermission("kygekeasygmd.gmdc.other")) {
-                $sender->sendMessage($nopermother);
-              } elseif ($sender->hasPermission("kygekeasygmd.gmdc.other")) {
-                if (!$other) {
-                  $sender->sendMessage($notfound);
-                } else {
-                  $other->setGamemode(1);
-                  $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Creative");
-                  $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Creative by " . $sender->getName());
-                }
-              }
-            }
-          } else {
-            if (count($args) < 1) {
-              $self->setGamemode(1);
-              $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Creative");
-            } elseif (isset($args[0])) {
-              if (!$other) {
-                $sender->sendMessage($notfound);
-              } else {
-                $other->setGamemode(1);
-                $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Creative");
-                $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Creative by " . $sender->getName());
-              }
-            }
-          }
+          $sender->sendMessage($nopermission);
         }
+      }
       break;
 
       case "gmds":
-        if (!$sender instanceof Player) {
+      if (!$sender instanceof Player) {
+        if (count($args) < 1) {
+          $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmds <player>");
+        } elseif (isset($args[0])) {
+          if (is_null($other)) {
+            $sender->sendMessage($notfound);
+          } else {
+            $other->setGamemode(0);
+            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Survival");
+            $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Survival by CONSOLE");
+          }
+        }
+      } else {
+        if ($sender->hasPermission("kygekeasygmd.gmds")) {
           if (count($args) < 1) {
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmds <player>");
+            $sender->setGamemode(0);
+            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Survival");
           } elseif (isset($args[0])) {
-            if (!$other) {
+            if (is_null($other)) {
               $sender->sendMessage($notfound);
             } else {
               $other->setGamemode(0);
               $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Survival");
-              $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Survival by CONSOLE");
+              $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Survival by " . $sender->getName());
             }
           }
         } else {
-          if (!$sender->hasPermission("kygekeasygmd.gmds")) {
-            if (count($args) < 1) {
-              if (!$sender->hasPermission("kygekeasygmd.gmds.self") and $sender->hasPermission("kygekeasygmd.gmds.other")) {
-                $sender->sendMessage($nopermall);
-              } elseif (!$sender->hasPermission("kygekeasygmd.gmds.self")) {
-                $sender->sendMessage($nopermself);
-              } elseif ($sender->hasPermission("kygekeasygmd.gmds.self")) {
-                $self->setGamemode(0);
-                $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Survival");
-              }
-            } elseif (isset($args[0])) {
-              if (!$sender->hasPermission("kygekeasygmd.gmds.self") and $sender->hasPermission("kygekeasygmd.gmds.other")) {
-                $sender->sendMessage($nopermall);
-              } elseif (!$sender->hasPermission("kygekeasygmd.gmds.other")) {
-                $sender->sendMessage($nopermother);
-              } elseif ($sender->hasPermission("kygekeasygmd.gmds.other")) {
-                if (!$other) {
-                  $sender->sendMessage($notfound);
-                } else {
-                  $other->setGamemode(0);
-                  $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Survival");
-                  $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Survival by " . $sender->getName());
-                }
-              }
-            }
-          } else {
-            if (count($args) < 1) {
-              $self->setGamemode(0);
-              $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Survival");
-            } elseif (isset($args[0])) {
-              if (!$other) {
-                $sender->sendMessage($notfound);
-              } else {
-                $other->setGamemode(0);
-                $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Survival");
-                $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Survival by " . $sender->getName());
-              }
-            }
-          }
+          $sender->sendMessage($nopermission);
         }
+      }
       break;
 
       case "gmda":
-        if (!$sender instanceof Player) {
+      if (!$sender instanceof Player) {
+        if (count($args) < 1) {
+          $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmda <player>");
+        } elseif (isset($args[0])) {
+          if (is_null($other)) {
+            $sender->sendMessage($notfound);
+          } else {
+            $other->setGamemode(2);
+            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Adventure");
+            $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Adventure by CONSOLE");
+          }
+        }
+      } else {
+        if ($sender->hasPermission("kygekeasygmd.gmda")) {
           if (count($args) < 1) {
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmda <player>");
+            $sender->setGamemode(2);
+            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Adventure");
           } elseif (isset($args[0])) {
-            if (!$other) {
+            if (is_null($other)) {
               $sender->sendMessage($notfound);
             } else {
               $other->setGamemode(2);
               $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Adventure");
-              $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Adventure by CONSOLE");
+              $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Adventure by " . $sender->getName());
             }
           }
         } else {
-          if (!$sender->hasPermission("kygekeasygmd.gmda")) {
-            if (count($args) < 1) {
-              if (!$sender->hasPermission("kygekeasygmd.gmda.self") and $sender->hasPermission("kygekeasygmd.gmda.other")) {
-                $sender->sendMessage($nopermall);
-              } elseif (!$sender->hasPermission("kygekeasygmd.gmda.self")) {
-                $sender->sendMessage($nopermself);
-              } elseif ($sender->hasPermission("kygekeasygmd.gmda.self")) {
-                $self->setGamemode(2);
-                $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Adventure");
-              }
-            } elseif (isset($args[0])) {
-              if (!$sender->hasPermission("kygekeasygmd.gmda.self") and $sender->hasPermission("kygekeasygmd.gmda.other")) {
-                $sender->sendMessage($nopermall);
-              } elseif (!$sender->hasPermission("kygekeasygmd.gmda.other")) {
-                $sender->sendMessage($nopermother);
-              } elseif ($sender->hasPermission("kygekeasygmd.gmda.other")) {
-                if (!$other) {
-                  $sender->sendMessage($notfound);
-                } else {
-                  $other->setGamemode(2);
-                  $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Adventure");
-                  $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Adventure by " . $sender->getName());
-                }
-              }
-            }
-          } else {
-            if (count($args) < 1) {
-              $self->setGamemode(2);
-              $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Adventure");
-            } elseif (isset($args[0])) {
-              if (!$other) {
-                $sender->sendMessage($notfound);
-              } else {
-                $other->setGamemode(2);
-                $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Adventure");
-                $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Adventure by " . $sender->getName());
-              }
-            }
-          }
+          $sender->sendMessage($nopermission);
         }
+      }
       break;
 
       case "gmdsp":
-        if (!$sender instanceof Player) {
+      if (!$sender instanceof Player) {
+        if (count($args) < 1) {
+          $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmdsp <player>");
+        } elseif (isset($args[0])) {
+          if (is_null($other)) {
+            $sender->sendMessage($notfound);
+          } else {
+            $other->setGamemode(3);
+            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Spectator");
+            $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Spectator by CONSOLE");
+          }
+        }
+      } else {
+        if ($sender->hasPermission("kygekeasygmd.gmdsp")) {
           if (count($args) < 1) {
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmdsp <player>");
+            $sender->setGamemode(3);
+            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Spectator");
           } elseif (isset($args[0])) {
-            if (!$other) {
+            if (is_null($other)) {
               $sender->sendMessage($notfound);
             } else {
               $other->setGamemode(3);
               $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Spectator");
-              $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Spectator by CONSOLE");
+              $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Spectator by " . $sender->getName());
             }
           }
         } else {
-          if (!$sender->hasPermission("kygekeasygmd.gmdsp")) {
-            if (count($args) < 1) {
-              if (!$sender->hasPermission("kygekeasygmd.gmdsp.self") and $sender->hasPermission("kygekeasygmd.gmdsp.other")) {
-                $sender->sendMessage($nopermall);
-              } elseif (!$sender->hasPermission("kygekeasygmd.gmdsp.self")) {
-                $sender->sendMessage($nopermself);
-              } elseif ($sender->hasPermission("kygekeasygmd.gmdsp.self")) {
-                $self->setGamemode(3);
-                $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Spectator");
-              }
-            } elseif (isset($args[0])) {
-              if (!$sender->hasPermission("kygekeasygmd.gmdsp.self") and $sender->hasPermission("kygekeasygmd.gmdsp.other")) {
-                $sender->sendMessage($nopermall);
-              } elseif (!$sender->hasPermission("kygekeasygmd.gmdsp.other")) {
-                $sender->sendMessage($nopermother);
-              } elseif ($sender->hasPermission("kygekeasygmd.gmdsp.other")) {
-                if (!$other) {
-                  $sender->sendMessage($notfound);
-                } else {
-                  $other->setGamemode(3);
-                  $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Spectator");
-                  $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Spectator by " . $sender->getName());
-                }
-              }
-            }
-          } else {
-            if (count($args) < 1) {
-              $self->setGamemode(3);
-              $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Spectator");
-            } elseif (isset($args[0])) {
-              if (!$other) {
-                $sender->sendMessage($notfound);
-              } else {
-                $other->setGamemode(3);
-                $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $other->getName() . "'s gamemode to Spectator");
-                $other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Spectator by " . $sender->getName());
-              }
-            }
-          }
+          $sender->sendMessage($nopermission);
         }
+      }
       break;
 
     }
