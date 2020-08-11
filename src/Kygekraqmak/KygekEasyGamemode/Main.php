@@ -47,7 +47,7 @@ class Main extends PluginBase {
         if (count($args) < 1) {
           $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmdc <player>");
         } elseif (isset($args[0])) {
-          if (is_null($other)) {
+          if (!$other instanceof Player) {
             $sender->sendMessage($notfound);
           } else {
             $other->setGamemode(1);
@@ -61,7 +61,7 @@ class Main extends PluginBase {
             $sender->setGamemode(1);
             $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Creative");
           } elseif (isset($args[0])) {
-            if (is_null($other)) {
+            if (!$other instanceof Player) {
               $sender->sendMessage($notfound);
             } else {
               $other->setGamemode(1);
@@ -80,7 +80,7 @@ class Main extends PluginBase {
         if (count($args) < 1) {
           $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmds <player>");
         } elseif (isset($args[0])) {
-          if (is_null($other)) {
+          if (!$other instanceof Player) {
             $sender->sendMessage($notfound);
           } else {
             $other->setGamemode(0);
@@ -94,7 +94,7 @@ class Main extends PluginBase {
             $sender->setGamemode(0);
             $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Survival");
           } elseif (isset($args[0])) {
-            if (is_null($other)) {
+            if (!$other instanceof Player) {
               $sender->sendMessage($notfound);
             } else {
               $other->setGamemode(0);
@@ -113,7 +113,7 @@ class Main extends PluginBase {
         if (count($args) < 1) {
           $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmda <player>");
         } elseif (isset($args[0])) {
-          if (is_null($other)) {
+          if (!$other instanceof Player) {
             $sender->sendMessage($notfound);
           } else {
             $other->setGamemode(2);
@@ -127,7 +127,7 @@ class Main extends PluginBase {
             $sender->setGamemode(2);
             $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Adventure");
           } elseif (isset($args[0])) {
-            if (is_null($other)) {
+            if (!$other instanceof Player) {
               $sender->sendMessage($notfound);
             } else {
               $other->setGamemode(2);
@@ -146,7 +146,7 @@ class Main extends PluginBase {
         if (count($args) < 1) {
           $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmdsp <player>");
         } elseif (isset($args[0])) {
-          if (is_null($other)) {
+          if (!$other instanceof Player) {
             $sender->sendMessage($notfound);
           } else {
             $other->setGamemode(3);
@@ -160,7 +160,7 @@ class Main extends PluginBase {
             $sender->setGamemode(3);
             $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Spectator");
           } elseif (isset($args[0])) {
-            if (is_null($other)) {
+            if (!$other instanceof Player) {
               $sender->sendMessage($notfound);
             } else {
               $other->setGamemode(3);
