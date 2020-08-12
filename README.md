@@ -10,7 +10,7 @@ A PocketMine-MP plugin to quickly change between gamemodes. This plugin will sav
 # How to Install
 
 1. Download the latest version (It is recommended to always download the latest version for the best experience, except you're having compatibility issues).
-2. Put the .phar file to the plugins folder.
+2. Put the `KygekEasyGamemode.phar` file to the `plugins` folder.
 3. Restart the server.
 4. Done!
 
