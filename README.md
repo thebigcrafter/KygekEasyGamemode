@@ -25,5 +25,5 @@ A PocketMine-MP plugin to quickly change between gamemodes. This plugin will sav
 
 # Additional Notes
 
-- Join the Discord <a href="https://discord.gg/CXtqUZv">here</a> for latest updates from Kygekraqmak.
-- If you find bugs or want to give suggestions, please visit <a href="https://github.com/Kygekraqmak/KygekEasyGamemode/issues">here</a> or DM Kygekraqmak#6415 via Discord.
+- Join our Discord server <a href="https://discord.gg/CXtqUZv">here</a> for latest updates from Kygekraqmak.
+- If you find bugs or want to give suggestions, please visit <a href="https://github.com/Kygekraqmak/KygekEasyGamemode/issues">here</a> or DM KygekDev#6415 via Discord.
