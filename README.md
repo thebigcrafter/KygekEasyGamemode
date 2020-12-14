@@ -9,7 +9,7 @@ A PocketMine-MP plugin to quickly change between gamemodes. This plugin will sav
 
 # How to Install
 
-1. Download the latest version (It is recommended to always download the latest version for the best experience, except you're having compatibility issues).
+1. Download the latest version (It is recommended to always download the latest version for the best experience, except you're having compatibility issues) in <a href="https://github.com/Kygekraqmak/KygekEasyGamemode/releases">here</a>.
 2. Put the `KygekEasyGamemode.phar` file to the `plugins` folder.
 3. Restart the server.
 4. Done!
@@ -18,12 +18,13 @@ A PocketMine-MP plugin to quickly change between gamemodes. This plugin will sav
 
 | Command | Description | Permission |
 | --- | --- | --- |
-| `/gmdc [Player]` | Change gamemode to Creative | `kygekeasygmd.gmdc` |
-| `/gmds [Player]` | Change gamemode to Survival | `kygekeasygmd.gmds` |
-| `/gmda [Player]` | Change gamemode to Adventure | `kygekeasygmd.gmda` |
-| `/gmdsp [Player]` | Change gamemode to Spectator | `kygekeasygmd.gmdsp` |
+| `/gmdc [player]` | Change gamemode to Creative | `kygekeasygmd.gmdc` |
+| `/gmds [player]` | Change gamemode to Survival | `kygekeasygmd.gmds` |
+| `/gmda [player]` | Change gamemode to Adventure | `kygekeasygmd.gmda` |
+| `/gmdsp [player]` | Change gamemode to Spectator | `kygekeasygmd.gmdsp` |
 
 # Additional Notes
 
-- Join our Discord server <a href="https://discord.gg/CXtqUZv">here</a> for latest updates from Kygekraqmak.
-- If you find bugs or want to give suggestions, please visit <a href="https://github.com/Kygekraqmak/KygekEasyGamemode/issues">here</a> or DM KygekDev#6415 via Discord.
+- Join our Discord server <a href="https://discord.gg/CXtqUZv">here</a> for latest updates from KygekTeam.
+- If you find bugs or want to give suggestions, please make an issue <a href="https://github.com/Kygekraqmak/KygekEasyGamemode/issues">here</a> or join our Discord server.
+- We accept all contributions! If you want to contribute, please make a pull request <a href="https://github.com/Kygekraqmak/KygekEasyGamemode/pulls">here</a>.
