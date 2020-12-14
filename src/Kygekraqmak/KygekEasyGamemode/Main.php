@@ -20,165 +20,83 @@
 
 namespace Kygekraqmak\KygekEasyGamemode;
 
-use pocketmine\Server;
 use pocketmine\Player;
-use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
-use pocketmine\utils\TextFormat;
+use pocketmine\utils\TextFormat as TF;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\command\CommandExecutor;
-use pocketmine\command\ConsoleCommandSender;
 
 class Main extends PluginBase {
 
-  private $other;
-  private $nopermission;
-  private $notfound;
+    const PREFIX = TF::GREEN . "[KygekEasyGamemode] ";
 
-  public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
-    if (isset($args[0])) {
-      $this->other = $this->getServer()->getPlayerExact($args[0]);
-      $this->nopermission = TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::RED . "You do not have permission to use this command";
-      $this->notfound = TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::RED . "Player was not found";
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
+        switch (strtolower($command->getName())) {
+            case "gmds":
+                $this->changeGamemode($sender, "gmds", $args);
+                break;
+            case "gmdc":
+                $this->changeGamemode($sender, "gmdc", $args);
+                break;
+            case "gmda":
+                $this->changeGamemode($sender, "gmda", $args);
+                break;
+            case "gmdsp":
+                $this->changeGamemode($sender, "gmdsp", $args);
+        }
+        return true;
     }
-    // $self = $this->getServer()->getPlayer($sender->getName());
-    switch ($cmd->getName()) {
 
-      case "gmdc":
-      if (!$sender instanceof Player) {
-        if (count($args) < 1) {
-          $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmdc <player>");
-        } elseif (isset($args[0])) {
-          if (!$this->other instanceof Player) {
-            $sender->sendMessage($this->notfound);
-          } else {
-            $this->other->setGamemode(1);
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $this->other->getName() . "'s gamemode to Creative");
-            $this->other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Creative by CONSOLE");
-          }
+    private function changeGamemode(CommandSender $sender, string $cmd, array $args) {
+        if (!$sender->hasPermission("kygekeasygmd.gmdsp")) {
+            $sender->sendMessage(self::PREFIX . TF::RED . "You do not have permission to use this command");
+            return;
         }
-      } else {
-        if ($sender->hasPermission("kygekeasygmd.gmdc")) {
-          if (count($args) < 1) {
-            $sender->setGamemode(1);
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Creative");
-          } elseif (isset($args[0])) {
-            if (!$this->other instanceof Player) {
-              $sender->sendMessage($this->notfound);
+
+        if (!isset($args[0])) {
+            if (!$sender instanceof Player) {
+                $sender->sendMessage(self::PREFIX . TF::WHITE . "Usage: /$cmd <player>");
             } else {
-              $this->other->setGamemode(1);
-              $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $this->other->getName() . "'s gamemode to Creative");
-              $this->other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Creative by " . $sender->getName());
+                $gamemode = $this->setGamemode($sender, $cmd);
+                $sender->sendMessage(self::PREFIX . TF::YELLOW . "Successfully changed your gamemode to $gamemode");
             }
-          }
-        } else {
-          $sender->sendMessage($this->nopermission);
+            return;
         }
-      }
-      break;
 
-      case "gmds":
-      if (!$sender instanceof Player) {
-        if (count($args) < 1) {
-          $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmds <player>");
-        } elseif (isset($args[0])) {
-          if (!$this->other instanceof Player) {
-            $sender->sendMessage($this->notfound);
-          } else {
-            $this->other->setGamemode(0);
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $this->other->getName() . "'s gamemode to Survival");
-            $this->other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Survival by CONSOLE");
-          }
+        $player = $this->getServer()->getPlayer($args[0]);
+        if (is_null($player)) {
+            $sender->sendMessage(self::PREFIX . TF::RED . "Player was not found");
+            return;
         }
-      } else {
-        if ($sender->hasPermission("kygekeasygmd.gmds")) {
-          if (count($args) < 1) {
-            $sender->setGamemode(0);
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Survival");
-          } elseif (isset($args[0])) {
-            if (!$this->other instanceof Player) {
-              $sender->sendMessage($this->notfound);
-            } else {
-              $this->other->setGamemode(0);
-              $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $this->other->getName() . "'s gamemode to Survival");
-              $this->other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Survival by " . $sender->getName());
-            }
-          }
-        } else {
-          $sender->sendMessage($this->nopermission);
-        }
-      }
-      break;
 
-      case "gmda":
-      if (!$sender instanceof Player) {
-        if (count($args) < 1) {
-          $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmda <player>");
-        } elseif (isset($args[0])) {
-          if (!$this->other instanceof Player) {
-            $sender->sendMessage($this->notfound);
-          } else {
-            $this->other->setGamemode(2);
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $this->other->getName() . "'s gamemode to Adventure");
-            $this->other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Adventure by CONSOLE");
-          }
-        }
-      } else {
-        if ($sender->hasPermission("kygekeasygmd.gmda")) {
-          if (count($args) < 1) {
-            $sender->setGamemode(2);
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Adventure");
-          } elseif (isset($args[0])) {
-            if (!$this->other instanceof Player) {
-              $sender->sendMessage($this->notfound);
-            } else {
-              $this->other->setGamemode(2);
-              $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $this->other->getName() . "'s gamemode to Adventure");
-              $this->other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Adventure by " . $sender->getName());
-            }
-          }
-        } else {
-          $sender->sendMessage($this->nopermission);
-        }
-      }
-      break;
-
-      case "gmdsp":
-      if (!$sender instanceof Player) {
-        if (count($args) < 1) {
-          $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::WHITE . "Usage: /gmdsp <player>");
-        } elseif (isset($args[0])) {
-          if (!$this->other instanceof Player) {
-            $sender->sendMessage($this->notfound);
-          } else {
-            $this->other->setGamemode(3);
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $this->other->getName() . "'s gamemode to Spectator");
-            $this->other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Spectator by CONSOLE");
-          }
-        }
-      } else {
-        if ($sender->hasPermission("kygekeasygmd.gmdsp")) {
-          if (count($args) < 1) {
-            $sender->setGamemode(3);
-            $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed your gamemode to Spectator");
-          } elseif (isset($args[0])) {
-            if (!$this->other instanceof Player) {
-              $sender->sendMessage($this->notfound);
-            } else {
-              $this->other->setGamemode(3);
-              $sender->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Successfully changed " . $this->other->getName() . "'s gamemode to Spectator");
-              $this->other->sendMessage(TextFormat::GREEN . "[KygekEasyGamemode] " . TextFormat::YELLOW . "Your gamemode was changed to Spectator by " . $sender->getName());
-            }
-          }
-        } else {
-          $sender->sendMessage($this->nopermission);
-        }
-      }
-      break;
-
+        $gamemode = $this->setGamemode($player, $cmd);
+        $sender->sendMessage(self::PREFIX . TF::YELLOW . "Successfully changed {$player->getName()}'s gamemode to $gamemode");
+        $player->sendMessage(self::PREFIX . TF::YELLOW . "Your gamemode was changed to $gamemode by {$sender->getName()}");
     }
-    return true;
-  }
 
+    private function setGamemode(Player $player, string $cmd) : string {
+        switch ($cmd) {
+            case "gmds":
+                $player->setGamemode(0);
+                $gamemode = "Survival";
+                break;
+            case "gmdc":
+                $player->setGamemode(1);
+                $gamemode = "Creative";
+                break;
+            case "gmda":
+                $player->setGamemode(2);
+                $gamemode = "Adventure";
+                break;
+            case "gmdsp":
+                $player->setGamemode(3);
+                $gamemode = "Spectator";
+                break;
+            default:
+                $gamemode = "";
+        }
+
+        return $gamemode;
+    }
+    
 }
