@@ -48,7 +48,7 @@ class Main extends PluginBase {
     }
 
     private function changeGamemode(CommandSender $sender, string $cmd, array $args) {
-        if (!$sender->hasPermission("kygekeasygmd.gmdsp")) {
+        if (!$sender->hasPermission("kygekeasygmd." . $cmd)) {
             $sender->sendMessage(self::PREFIX . TF::RED . "You do not have permission to use this command");
             return;
         }
