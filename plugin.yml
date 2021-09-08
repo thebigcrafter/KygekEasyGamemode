@@ -19,8 +19,8 @@ name: KygekEasyGamemode
 main: Kygekraqmak\KygekEasyGamemode\Main
 api: 4.0.0
 extensions:
-  Core: ">=7.4"
-version: 2.0.0-ALPHA
+  Core: ">=8.0"
+version: 2.0.0-BETA
 authors: [Kygekraqmak, KygekTeam]
 
 commands:
