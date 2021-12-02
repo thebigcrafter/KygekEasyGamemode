@@ -29,7 +29,7 @@ use pocketmine\command\CommandSender;
 
 class Main extends PluginBase {
 
-    private const IS_DEV = true;
+    private const IS_DEV = false;
     private const PREFIX = TF::GREEN . "[KygekEasyGamemode] ";
 
     protected function onEnable() : void {

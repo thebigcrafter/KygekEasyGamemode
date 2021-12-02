@@ -2,7 +2,7 @@
 
 [![Discord](https://img.shields.io/discord/735439472992321587.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/CXtqUZv)
 
-**PM4 BRANCH WARNING: This plugin branch is currently under development. There might be some major bugs. If you found one, please [submit an issue](https://github.com/KygekTeam/KygekEasyGamemode/issues).**
+**NOTICE:** This plugin branch is for PocketMine-MP 4. If you are looking for the PocketMine-MP 3 version of this plugin, please visit the [master](https://github.com/KygekTeam/KygekEasyGamemode/tree/master) branch.
 
 A PocketMine-MP plugin to quickly change between gamemodes. This plugin will save your time, especially if you are often changing between gamemodes.
 
