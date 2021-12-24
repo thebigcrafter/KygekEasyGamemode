@@ -6,6 +6,4 @@ branches:
 projects:
   KygekEasyGamemode:
     path: ""
-    lint:
-      phpstan: false
 ...
