@@ -27,6 +27,12 @@ A PocketMine-MP plugin to quickly change between gamemodes. This plugin will sav
 | `/gmda [player]` | Change gamemode to Adventure | `kygekeasygmd.gmda` |
 | `/gmdsp [player]` | Change gamemode to Spectator | `kygekeasygmd.gmdsp` |
 
+# Planned Features
+
+- Handle `Player->setGamemode()` returning `false`
+
+You can request for a feature to be added in a future update [here](https://github.com/KygekTeam/KygekEasyGamemode/issues)!
+
 # Additional Notes
 
 KygekEasyGamemode plugin is made by KygekTeam and licensed under **GPL-3.0**.

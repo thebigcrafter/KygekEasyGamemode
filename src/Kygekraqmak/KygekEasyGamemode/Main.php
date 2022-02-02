@@ -20,6 +20,7 @@
 
 namespace Kygekraqmak\KygekEasyGamemode;
 
+use KygekTeam\KtpmplCfs\KtpmplCfs;
 use pocketmine\player\GameMode;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
@@ -35,23 +36,17 @@ class Main extends PluginBase {
     protected function onEnable() : void {
         /** @phpstan-ignore-next-line */
         if (self::IS_DEV) {
-            $this->getLogger()->warning("This plugin is running on a development version. There might be some major bugs. If you found one, please submit an issue in https://github.com/KygekTeam/KygekEasyGamemode/issues.");
+            (new KtpmplCfs($this))->warnDevelopmentVersion();
         }
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
-        switch (strtolower($command->getName())) {
+        switch ($cmd = strtolower($command->getName())) {
             case "gmds":
-                $this->changeGamemode($sender, "gmds", $args);
-                break;
             case "gmdc":
-                $this->changeGamemode($sender, "gmdc", $args);
-                break;
             case "gmda":
-                $this->changeGamemode($sender, "gmda", $args);
-                break;
             case "gmdsp":
-                $this->changeGamemode($sender, "gmdsp", $args);
+                $this->changeGamemode($sender, $cmd, $args);
         }
         return true;
     }
@@ -86,26 +81,23 @@ class Main extends PluginBase {
     private function setGamemode(Player $player, string $cmd) : string {
         switch ($cmd) {
             case "gmds":
-                $player->setGamemode(GameMode::SURVIVAL());
-                $gamemode = "Survival";
+                $gamemode = GameMode::SURVIVAL();
                 break;
             case "gmdc":
-                $player->setGamemode(GameMode::CREATIVE());
-                $gamemode = "Creative";
+                $gamemode = GameMode::CREATIVE();
                 break;
             case "gmda":
-                $player->setGamemode(GameMode::ADVENTURE());
-                $gamemode = "Adventure";
+                $gamemode = GameMode::ADVENTURE();
                 break;
             case "gmdsp":
-                $player->setGamemode(GameMode::SPECTATOR());
-                $gamemode = "Spectator";
+                $gamemode = GameMode::SPECTATOR();
                 break;
             default:
-                $gamemode = "";
+                return "";
         }
 
-        return $gamemode;
+        $player->setGamemode($gamemode);
+        return $gamemode->getEnglishName();
     }
     
 }

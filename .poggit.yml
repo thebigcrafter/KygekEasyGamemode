@@ -6,4 +6,7 @@ branches:
 projects:
   KygekEasyGamemode:
     path: ""
+    libs:
+    - src: KygekTeam/ktpmpl-cfs/ktpmpl-cfs
+      version: ^4.0.0
 ...
