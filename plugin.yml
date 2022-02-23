@@ -42,6 +42,9 @@ commands:
     usage: "/gmdsp [player]"
 
 permissions:
+  kygekeasygmd:
+    description: Permission to use all KygekEasyGamemode commands for self and other
+    default: op
   kygekeasygmd.gmdc:
     description: Permission to use /gmdc for self and other
     default: op

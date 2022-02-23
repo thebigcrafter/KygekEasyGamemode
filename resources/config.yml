@@ -1,0 +1,45 @@
+---
+# KygekEasyGamemode plugin configuration file
+# Plugin by KygekTeam
+
+# Custom messages settings
+# You can use default variable(s) for some messages and '&' as formatting code
+# Leave empty to use the default messages
+messages:
+  # Custom message prefix
+  # Possible values: false, string
+  # If false, the default prefix ([KygekEasyGamemode]) will be used
+  # You don't need to append a space (' ') into your custom prefix to separate it with the main message
+  # To disable prefix, simply use "" (with the quotation marks)
+  prefix: false
+  # Sent whenever the sender does not have the permission to change the gamemode
+  no-permission: ""
+  # Sent whenever the sender attempts to change their own gamemode and it is not a player
+  # By default, the plugin sends the correct command usage
+  # Variable(s): $command = Command name
+  sender-not-player: ""
+  # Sent whenever the sender changed the gamemode successfully
+  success:
+    # Sent whenever the sender changed their own gamemode
+    # Variable(s): $gamemode = Gamemode name
+    self: ""
+    # Sent whenever the sender changed other player's gamemode
+    other:
+      # Sent to the target (other player)
+      # Variables: $gamemode = Gamemode name, $sender = Sender name
+      target: ""
+      # Sent to the command sender
+      # Variables: $gamemode = Gamemode name, $target = Target player name
+      sender: ""
+  # Sent whenever the sender attempts to change the gamemode of a non-existent player
+  # Variable(s): $name = Name of the attempted player
+  invalid-player: ""
+
+# Whether to warn if plugin is running on a development version (Recommended)
+warn-development: true
+
+##### DANGER ZONE #####
+# Do not change this (Only for internal use)!
+config-version: "2.1"
+#######################
+...
