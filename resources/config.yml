@@ -1,0 +1,5 @@
+NoPermissionMessage: §cYou do not have permission to use this command.
+SelfChangeGamemodeSuccessfully: §aSuccessfully changed your gamemode to {{gamemode}}
+PlayerNotFound: §cPlayer not found
+PlayerChangeGamemodeSuccessfully: §aSuccessfully changed {{player}}'s gamemode to {{gamemode}}
+GamemodeChangedAlert: §eYour gamemode was changed to {{gamemode}} by {{player}}
