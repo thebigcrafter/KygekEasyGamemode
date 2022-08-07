@@ -1,46 +1,32 @@
-# KygekEasyGamemode
+<h1 align="center">KygekEasyGamemode</h1>
 
-[![Discord](https://img.shields.io/discord/735439472992321587.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/CXtqUZv)
+<p align="center">
 
-**NOTICE:** This plugin branch is for PocketMine-MP 4. If you are looking for the PocketMine-MP 3 version of this plugin, please visit the [master](https://github.com/KygekTeam/KygekEasyGamemode/tree/master) branch.
+<img src="https://img.shields.io/static/v1?label=Available%20For&message=1.18%20|%201.19&color=F98287&style=for-the-badge" />
+<img src="https://img.shields.io/github/license/thebigcrafter/KygekEasyGamemode?style=for-the-badge" />
+<img src="https://img.shields.io/discord/970294579372912700?color=7289DA&label=discord&logo=discord&style=for-the-badge" />
+
+</p>
+
+# 📖 About
 
 A PocketMine-MP plugin to quickly change between gamemodes. This plugin will save your time, especially if you are often changing between gamemodes.
 
-# Features
+# 🧩 Features
 
-- Works in console
-- Invalid player name detection
+- Works in console.
+- Invalid player name detection.
+- Customizable message.
 
-# How to Install
+# ⬇️ Installation
 
-1. Download the latest version (It is recommended to always download the latest version for the best experience, except you're having compatibility issues) in <a href="https://github.com/KygekTeam/KygekEasyGamemode/releases">here</a>.
-2. Put the `KygekEasyGamemode.phar` file to the `plugins` folder.
+1. Download the latest version (It is recommended to always download the latest version for the best experience, except you're having compatibility issues) in [here](https://github.com/thebigcrafter/KygekEasyGamemode/releases).
+2. Put the KygekEasyGamemode.phar file to the plugins folder.
 3. Restart the server.
 4. Done!
 
-# Commands & Permissions
+# 🚢 Other Versions
+- [Nukkit](https://github.com/KygekTeam/KygekEasyGamemode-Nukkit) 
 
-| Command | Description | Permission |
-| --- | --- | --- |
-| `/gmdc [player]` | Change gamemode to Creative | `kygekeasygmd.gmdc` |
-| `/gmds [player]` | Change gamemode to Survival | `kygekeasygmd.gmds` |
-| `/gmda [player]` | Change gamemode to Adventure | `kygekeasygmd.gmda` |
-| `/gmdsp [player]` | Change gamemode to Spectator | `kygekeasygmd.gmdsp` |
-
-# Planned Features
-
-- Handle `Player->setGamemode()` returning `false`
-
-You can request for a feature to be added in a future update [here](https://github.com/KygekTeam/KygekEasyGamemode/issues)!
-
-# Additional Notes
-
-KygekEasyGamemode plugin is made by KygekTeam and licensed under **GPL-3.0**.
-
-- Join our Discord server <a href="https://discord.gg/CXtqUZv">here</a> for latest updates from KygekTeam.
-- If you find bugs or want to give suggestions, please make an issue <a href="https://github.com/KygekTeam/KygekEasyGamemode/issues">here</a> or join our Discord server.
-- We accept all contributions! If you want to contribute, please make a pull request <a href="https://github.com/KygekTeam/KygekEasyGamemode/pulls">here</a>.
-
-# Other Versions
-
-- [Nukkit](https://github.com/KygekTeam/KygekEasyGamemode-Nukkit)
+# ⚖️ License
+Licensed under the [GNU General Public License v3.0](https://github.com/thebigcrafter/KygekEasyGamemode/blob/pm4/LICENSE) license.
