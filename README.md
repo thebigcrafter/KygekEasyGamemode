@@ -2,9 +2,8 @@
 
 <p align="center">
 
-<img src="https://img.shields.io/static/v1?label=Available%20For&message=1.18%20|%201.19&color=F98287&style=for-the-badge" />
-<img src="https://img.shields.io/github/license/thebigcrafter/KygekEasyGamemode?style=for-the-badge" />
-<img src="https://img.shields.io/discord/970294579372912700?color=7289DA&label=discord&logo=discord&style=for-the-badge" />
+<a href="https://github.com/thebigcrafter/KygekEasyGamemode/blob/pm4/LICENSE"><img src="https://img.shields.io/github/license/thebigcrafter/KygekEasyGamemode?style=for-the-badge" alt="license" /></a>
+<a href="https://discord.gg/cEXW8uK6QA"><img src="https://img.shields.io/discord/970294579372912700?color=7289DA&label=discord&logo=discord&style=for-the-badge" alt="discord" /></a>
 
 </p>
 
