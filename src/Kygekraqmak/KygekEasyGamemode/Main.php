@@ -20,17 +20,15 @@
 
 namespace Kygekraqmak\KygekEasyGamemode;
 
-use KygekTeam\KtpmplCfs\KtpmplCfs;
-use pocketmine\player\GameMode;
-use pocketmine\player\Player;
-use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\player\GameMode;
+use pocketmine\player\Player;
+use pocketmine\plugin\PluginBase;
 
 class Main extends PluginBase {
 
-    private const IS_DEV = false;
     private const PREFIX = TF::GREEN . "[KygekEasyGamemode] ";
 
     protected function onEnable() : void {
@@ -43,44 +41,44 @@ class Main extends PluginBase {
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
-        switch ($cmd = strtolower($command->getName())) {
+        switch ($command = strtolower($command->getName())) {
             case "gmds":
             case "gmdc":
             case "gmda":
             case "gmdsp":
-                $this->changeGamemode($sender, $cmd, $args);
+                $this->changeGamemode($sender, $command, $args);
         }
         return true;
     }
 
-    private function changeGamemode(CommandSender $sender, string $cmd, array $args) {
+    private function changeGamemode(CommandSender $sender, string $command, array $args) {
         if (!$sender->hasPermission("kygekeasygmd." . $cmd)) {
-            $sender->sendMessage(self::PREFIX . $this->getConfig()->get("NoPermisisonMessage"));
+            $sender->sendMessage(self::PREFIX . $this->getConfig()->get("NoPermissionMessage"));
             return;
         }
 
         if (!isset($args[0])) {
             if (!$sender instanceof Player) {
-                $sender->sendMessage(self::PREFIX . TF::WHITE . "Usage: /$cmd <player>");
+                $sender->sendMessage(self::PREFIX . TF::WHITE . "Usage: /$command <player>");
             } else {
-                $gamemode = $this->setGamemode($sender, $cmd);
-                $sender->sendMessage(self::PREFIX . str_replace("{{gamemode}}", $gamemode, $this->getConfig()->get("SelfChangeGamemodeSuccessfully")));
+                $gamemode = $this->setGamemode($sender, $command);
+                $sender->sendMessage(self::PREFIX . str_replace("{{gamemode}}", (string) $gamemode, $this->getConfig()->get("SelfChangeGamemodeSuccessfully")));
             }
             return;
         }
 
-        $player = $this->getServer()->getPlayerByPrefix($args[0]);
+        $player = $this->getServer()->getPlayerExact($args[0]);
         if (is_null($player)) {
             $sender->sendMessage(self::PREFIX . $this->getConfig()->get("PlayerNotFound"));
             return;
         }
 
         $gamemode = $this->setGamemode($player, $cmd);
-        $sender->sendMessage(self::PREFIX . str_replace("{{gamemode}}", $gamemode, str_replace("{{player}}", $player->getName(), $this->getConfig()->get("PlayerChangeGamemodeSuccessfully"))));
-        $player->sendMessage(self::PREFIX . str_replace("{{gamemode}}", $gamemode, str_replace("{{player}}", $sender->getName(), $this->getConfig()->get("GamemodeChangedAlert"))));
+        $sender->sendMessage(self::PREFIX . str_replace("{{gamemode}}", (string) $gamemode, str_replace("{{player}}", (string) $player->getName(), $this->getConfig()->get("PlayerChangeGamemodeSuccessfully"))));
+        $player->sendMessage(self::PREFIX . str_replace("{{gamemode}}", (string) $gamemode, str_replace("{{player}}", (string) $sender->getName(), $this->getConfig()->get("GamemodeChangedAlert"))));
     }
 
-    private function setGamemode(Player $player, string $cmd) : string {
+    private function setGamemode(Player $player, string $cmd) : ?string {
         switch ($cmd) {
             case "gmds":
                 $gamemode = GameMode::SURVIVAL();
@@ -95,11 +93,11 @@ class Main extends PluginBase {
                 $gamemode = GameMode::SPECTATOR();
                 break;
             default:
-                return "";
+                return null;
         }
 
         $player->setGamemode($gamemode);
         return $gamemode->getEnglishName();
     }
-    
+
 }
