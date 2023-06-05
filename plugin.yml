@@ -18,40 +18,40 @@
 name: KygekEasyGamemode
 main: Kygekraqmak\KygekEasyGamemode\Main
 api: 5.0.0
-version: 2.2.2
+version: 2.2.1
 authors: [Kygekraqmak, KygekTeam]
 description: Quickly change between gamemodes
 website: https://github.com/KygekTeam/KygekEasyGamemode
 
 commands:
-  gms:
-    description: Change gamemode to Survival
-    permission: easy.gms
-    usage: "/gms [player]"
-  gmc:
+  gmdc:
     description: Change gamemode to Creative
-    permission: easy.gmc
-    usage: "/gmc [player]"
-  gma:
+    permission: kygekeasygmd.gmdc
+    usage: '/gmdc [player]'
+  gmds:
+    description: Change gamemode to Survival
+    permission: kygekeasygmd.gmds
+    usage: '/gmds [player]'
+  gmda:
     description: Change gamemode to Adventure
-    permission: easy.gma
-    usage: "/gma [player]"
-  gmsp:
+    permission: kygekeasygmd.gmda
+    usage: '/gmda [player]'
+  gmdsp:
     description: Change gamemode to Spectator
-    permission: easy.gmsp
-    usage: "/gmsp [player]"
+    permission: kygekeasygmd.gmdsp
+    usage: '/gmdsp [player]'
 
 permissions:
-  easy.gmc:
-    description: Permission to use /gmc for self and other
+  kygekeasygmd.gmdc:
+    description: Permission to use /gmdc for self and other
     default: op
-  easy.gms:
-    description: Permission to use /gms for self and other
+  kygekeasygmd.gmds:
+    description: Permission to use /gmds for self and other
     default: op
-  easy.gma:
-    description: Permission to use /gma for self and other
+  kygekeasygmd.gmda:
+    description: Permission to use /gmda for self and other
     default: op
-  easy.gmsp:
-    description: Permission to use /gmsp for self and other
+  kygekeasygmd.gmdsp:
+    description: Permission to use /gmdsp for self and other
     default: op
 ...
