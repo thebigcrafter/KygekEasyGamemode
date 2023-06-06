@@ -1,12 +1,12 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/KygekTeam/KygekEasyGamemode
 build-by-default: true
 branches:
-- master
+- main
 - pm4
 projects:
   KygekEasyGamemode:
     path: ""
     libs:
-    - src: thebigcrafter/ktpmpl-cfs/ktpmpl-cfs
-      version: ^4.0.0
+    - src: thebigcrafter/Hydrogen/Hydrogen
+      version: ^1.0.0
 ...

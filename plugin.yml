@@ -17,8 +17,8 @@
 
 name: KygekEasyGamemode
 main: Kygekraqmak\KygekEasyGamemode\Main
-api: 4.0.0
-version: 2.2.0
+api: 5.0.0
+version: 3.0.0
 authors: [Kygekraqmak, KygekTeam]
 description: Quickly change between gamemodes
 website: https://github.com/KygekTeam/KygekEasyGamemode

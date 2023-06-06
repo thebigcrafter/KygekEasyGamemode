@@ -20,26 +20,20 @@
 
 namespace Kygekraqmak\KygekEasyGamemode;
 
-use KygekTeam\KtpmplCfs\KtpmplCfs;
 use pocketmine\player\GameMode;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use thebigcrafter\Hydrogen\Hydrogen;
 
 class Main extends PluginBase {
-
-    private const IS_DEV = false;
     private const PREFIX = TF::GREEN . "[KygekEasyGamemode] ";
 
     protected function onEnable() : void {
-        /** @phpstan-ignore-next-line */
-        if (self::IS_DEV) {
-            (new KtpmplCfs($this))->warnDevelopmentVersion();
-        }
-
         $this->saveDefaultConfig();
+        Hydrogen::checkForUpdates($this);
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
