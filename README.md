@@ -3,7 +3,7 @@
 <p align="center">
 
 <a href="https://github.com/thebigcrafter/KygekEasyGamemode/blob/pm4/LICENSE"><img src="https://img.shields.io/github/license/thebigcrafter/KygekEasyGamemode?style=for-the-badge" alt="license" /></a>
-<a href="https://discord.gg/cEXW8uK6QA"><img src="https://img.shields.io/discord/970294579372912700?color=7289DA&label=discord&logo=discord&style=for-the-badge" alt="discord" /></a>
+<a href="https://discord.gg/PykBfE2TZ9"><img src="https://img.shields.io/discord/1087729577004122112?color=7289DA&label=discord&logo=discord&style=for-the-badge" alt="discord" /></a>
 
 </p>
 
@@ -28,4 +28,4 @@ A PocketMine-MP plugin to quickly change between gamemodes. This plugin will sav
 - [Nukkit](https://github.com/KygekTeam/KygekEasyGamemode-Nukkit) 
 
 # ⚖️ License
-Licensed under the [GNU General Public License v3.0](https://github.com/thebigcrafter/KygekEasyGamemode/blob/pm4/LICENSE) license.
+Licensed under the [GNU General Public License v3.0](https://github.com/thebigcrafter/KygekEasyGamemode/blob/main/LICENSE) license.
