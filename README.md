@@ -3,7 +3,6 @@
 <p align="center">
 <a href="https://github.com/thebigcrafter/KygekEasyGamemode/blob/pm4/LICENSE"><img src="https://img.shields.io/github/license/thebigcrafter/KygekEasyGamemode?style=for-the-badge" alt="license" /></a>
 <a href="https://discord.gg/PykBfE2TZ9"><img src="https://img.shields.io/discord/1087729577004122112?color=7289DA&label=discord&logo=discord&style=for-the-badge" alt="discord" /></a>
-
 </p>
 
 # 📖 About
