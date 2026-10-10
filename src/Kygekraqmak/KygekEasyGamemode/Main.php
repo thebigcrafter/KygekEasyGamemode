@@ -30,6 +30,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 use thebigcrafter\Hydrogen\Hydrogen;
 use function is_null;
+use function is_string;
 use function str_replace;
 use function strtolower;
 
