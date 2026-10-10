@@ -7,7 +7,18 @@
 
 # 📖 About
 
-A PocketMine-MP plugin to quickly change between gamemodes. This plugin will save your time, especially if you are often changing between gamemodes.
+A PocketMine-MP API 5 plugin for quickly changing between gamemodes. It is
+maintained by thebigcrafter and is useful for servers where operators switch
+gamemodes frequently.
+
+# Requirements
+
+- PocketMine-MP API 5.0.0 or newer.
+- PHP 8.1 or newer.
+
+Compatibility checks in this campaign use
+[Axolotl-PM](https://github.com/NhanAZ/Axolotl-PM), a PocketMine-MP-compatible
+server distribution.
 
 # 🧩 Features
 
@@ -25,5 +36,18 @@ A PocketMine-MP plugin to quickly change between gamemodes. This plugin will sav
 # 🚢 Other Versions
 - [Nukkit](https://github.com/KygekTeam/KygekEasyGamemode-Nukkit) 
 
+# 🧪 Build and test
+
+The build process uses [DevTools](https://github.com/NhanAZ/DevTools) to package
+and validate the plugin PHAR. Development checks use Composer, PHPStan and
+PHP-CS-Fixer:
+
+    composer install
+    composer analyse
+    vendor/bin/php-cs-fixer check --diff
+
+The packaged plugin must retain plugin.yml, resources/ and the PHP source under
+src/.
+
 # ⚖️ License
-Licensed under the [GNU General Public License v3.0](https://github.com/thebigcrafter/KygekEasyGamemode/blob/main/LICENSE) license.
+Licensed under the [GNU General Public License v3.0](LICENSE).
