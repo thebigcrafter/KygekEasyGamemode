@@ -52,9 +52,10 @@ class Main extends PluginBase {
 		return true;
 	}
 
-	private function changeGamemode(CommandSender $sender, string $cmd, array $args) {
+	/** @param array<string> $args */
+	private function changeGamemode(CommandSender $sender, string $cmd, array $args) : void {
 		if (!$sender->hasPermission("kygekeasygmd." . $cmd)) {
-			$sender->sendMessage(self::PREFIX . $this->getConfig()->get("NoPermisisonMessage"));
+			$sender->sendMessage(self::PREFIX . $this->getMessage("NoPermisisonMessage"));
 			return;
 		}
 
@@ -63,20 +64,26 @@ class Main extends PluginBase {
 				$sender->sendMessage(self::PREFIX . TF::WHITE . "Usage: /$cmd <player>");
 			} else {
 				$gamemode = $this->setGamemode($sender, $cmd);
-				$sender->sendMessage(self::PREFIX . str_replace("{{gamemode}}", $gamemode, $this->getConfig()->get("SelfChangeGamemodeSuccessfully")));
+				$sender->sendMessage(self::PREFIX . str_replace("{{gamemode}}", $gamemode, $this->getMessage("SelfChangeGamemodeSuccessfully")));
 			}
 			return;
 		}
 
-		$player = $this->getServer()->getPlayerByPrefix($args[0]);
+		$target = $args[0];
+		$player = $this->getServer()->getPlayerByPrefix($target);
 		if (is_null($player)) {
-			$sender->sendMessage(self::PREFIX . $this->getConfig()->get("PlayerNotFound"));
+			$sender->sendMessage(self::PREFIX . $this->getMessage("PlayerNotFound"));
 			return;
 		}
 
 		$gamemode = $this->setGamemode($player, $cmd);
-		$sender->sendMessage(self::PREFIX . str_replace("{{gamemode}}", $gamemode, str_replace("{{player}}", $player->getName(), $this->getConfig()->get("PlayerChangeGamemodeSuccessfully"))));
-		$player->sendMessage(self::PREFIX . str_replace("{{gamemode}}", $gamemode, str_replace("{{player}}", $sender->getName(), $this->getConfig()->get("GamemodeChangedAlert"))));
+		$sender->sendMessage(self::PREFIX . str_replace("{{gamemode}}", $gamemode, str_replace("{{player}}", $player->getName(), $this->getMessage("PlayerChangeGamemodeSuccessfully"))));
+		$player->sendMessage(self::PREFIX . str_replace("{{gamemode}}", $gamemode, str_replace("{{player}}", $sender->getName(), $this->getMessage("GamemodeChangedAlert"))));
+	}
+
+	private function getMessage(string $key) : string {
+		$value = $this->getConfig()->get($key);
+		return is_string($value) ? $value : "";
 	}
 
 	private function setGamemode(Player $player, string $cmd) : string {
