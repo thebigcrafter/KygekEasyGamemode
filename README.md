@@ -17,7 +17,7 @@ gamemodes frequently.
 - PHP 8.1 or newer.
 
 Compatibility checks in this campaign use
-[Axolotl-PM](https://github.com/NhanAZ/Axolotl-PM), a PocketMine-MP-compatible
+[Axolotl-PM](https://github.com/axolotl-pm/PocketMine-MP), a PocketMine-MP-compatible
 server distribution.
 
 # 🧩 Features
