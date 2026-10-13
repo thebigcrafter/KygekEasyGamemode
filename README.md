@@ -28,9 +28,9 @@ server distribution.
 
 # ⬇️ Installation
 
-1. Download the latest version (It is recommended to always download the latest version for the best experience, except you're having compatibility issues) in [here](https://github.com/thebigcrafter/KygekEasyGamemode/releases).
+1. Download a release from [GitHub Releases](https://github.com/thebigcrafter/KygekEasyGamemode/releases). Use an older release only when investigating a compatibility issue.
 2. Put the KygekEasyGamemode.phar file to the plugins folder.
-3. Restart the server.
+3. Restart Axolotl-PM.
 4. Done!
 
 # 🚢 Other Versions
