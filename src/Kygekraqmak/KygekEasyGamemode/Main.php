@@ -56,7 +56,7 @@ class Main extends PluginBase {
 	/** @param array<string> $args */
 	private function changeGamemode(CommandSender $sender, string $cmd, array $args) : void {
 		if (!$sender->hasPermission("kygekeasygmd." . $cmd)) {
-			$sender->sendMessage(self::PREFIX . $this->getMessage("NoPermisisonMessage"));
+			$sender->sendMessage(self::PREFIX . $this->getMessage("NoPermissionMessage"));
 			return;
 		}
 
