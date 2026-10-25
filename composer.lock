@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0086609d1841a118fc98937cb09dc6c4",
+    "content-hash": "1bac1463d7d0e34b4e482cdaad32e057",
     "packages": [
         {
             "name": "sof3/await-generator",
@@ -303,17 +303,66 @@
             "time": "2026-10-14T20:41:43+00:00"
         },
         {
-            "name": "axolotl-pm/pocketmine-mp",
-            "version": "5.49.2",
+            "name": "axolotl-pm/nethernet",
+            "version": "0.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/axolotl-pm/PocketMine-MP",
-                "reference": "7f229d2ee5f8972092c376f1eca26275477797dd"
+                "url": "https://github.com/axolotl-pm/NetherNet.git",
+                "reference": "6ecacdaed3b0605a6a523235e5536f9c09ea56fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/axolotl-pm/PocketMine-MP/zipball/7f229d2ee5f8972092c376f1eca26275477797dd",
-                "reference": "7f229d2ee5f8972092c376f1eca26275477797dd",
+                "url": "https://api.github.com/repos/axolotl-pm/NetherNet/zipball/6ecacdaed3b0605a6a523235e5536f9c09ea56fd",
+                "reference": "6ecacdaed3b0605a6a523235e5536f9c09ea56fd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-encoding": "~1.0.0",
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "ext-sockets": "*",
+                "ext-webrtc": "*",
+                "php": "^8.1",
+                "php-64bit": "*",
+                "php-ipv6": "*",
+                "pocketmine/log": "^0.4.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "2.1.46",
+                "phpstan/phpstan-phpunit": "^2.0.0",
+                "phpstan/phpstan-strict-rules": "^2.0.0",
+                "phpunit/phpunit": "^10.5.24"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "pocketmine\\nethernet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "description": "A NetherNet (WebRTC) transport implementation written in PHP",
+            "support": {
+                "issues": "https://github.com/axolotl-pm/NetherNet/issues",
+                "source": "https://github.com/axolotl-pm/NetherNet/tree/0.3.1"
+            },
+            "time": "2026-10-16T02:35:36+00:00"
+        },
+        {
+            "name": "axolotl-pm/pocketmine-mp",
+            "version": "5.50.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/axolotl-pm/PocketMine-MP",
+                "reference": "fe5b3dee173b5e839783ab6fb7280005aa0a4d73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/axolotl-pm/PocketMine-MP/zipball/fe5b3dee173b5e839783ab6fb7280005aa0a4d73",
+                "reference": "fe5b3dee173b5e839783ab6fb7280005aa0a4d73",
                 "shasum": ""
             },
             "require": {
@@ -322,6 +371,7 @@
                 "axolotl-pm/bedrock-data": "~6.9.0+bedrock-1.26.50",
                 "axolotl-pm/bedrock-item-upgrade-schema": "~1.19.0+bedrock-1.26.50",
                 "axolotl-pm/bedrock-protocol": "~63.0.1+bedrock-1.26.50",
+                "axolotl-pm/nethernet": "^0.3.1",
                 "axolotl-pm/xoroshiro128pp": "^0.1.0",
                 "composer-runtime-api": "^2.0",
                 "ext-chunkutils2": "^0.3.1",
@@ -416,7 +466,7 @@
             ],
             "description": "A server software for Minecraft: Bedrock Edition written in PHP",
             "homepage": "https://pmmp.io",
-            "time": "2026-10-15T00:33:01+00:00"
+            "time": "2026-10-17T07:07:05+00:00"
         },
         {
             "name": "axolotl-pm/xoroshiro128pp",
