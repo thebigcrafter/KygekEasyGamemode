@@ -38,7 +38,7 @@ server distribution.
 
 # 🧪 Build and test
 
-The build process uses [DevTools](https://github.com/NhanAZ/DevTools) to package
+The build process uses [DevTools](https://github.com/AxolotlBucketLabs/DevTools) to package
 and validate the plugin PHAR. Development checks use Composer, PHPStan and
 PHP-CS-Fixer:
 
